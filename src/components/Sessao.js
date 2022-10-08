@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Sessao({ sessao }) {
@@ -9,7 +10,9 @@ export default function Sessao({ sessao }) {
         </h3>
         <ListaHorariosContainer>
           {sessao.showtimes.map((h) => (
-            <HorarioContainer key={h.id}>{h.name}</HorarioContainer>
+            <Link key={h.id} to={`/assentos/${h.id}`}>
+              <HorarioContainer>{h.name}</HorarioContainer>
+            </Link>
           ))}
         </ListaHorariosContainer>
       </SessaoContainer>
@@ -33,16 +36,20 @@ const ListaHorariosContainer = styled.div`
   align-items: center;
 `;
 
-const HorarioContainer = styled.div`
+const HorarioContainer = styled.button`
   width: 83px;
   height: 43px;
+
+  font-size: 18px;
 
   margin-right: 10px;
 
   background-color: #e8833a;
   color: white;
+  text-decoration: none;
 
   border-radius: 3px;
+  border: none;
 
   display: flex;
   align-items: center;

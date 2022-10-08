@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FooterContainer = styled.div`
+const Footer = styled.div`
   width: 100%;
   height: 120px;
 
@@ -25,4 +25,4 @@ const FooterContainer = styled.div`
   }
 `;
 
-export default FooterContainer;
+export default Footer;

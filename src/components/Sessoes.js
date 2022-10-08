@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import FooterContainer from "./Footer";
+import Footer from "./Footer";
 import Sessao from "./Sessao";
 
 export default function Sessoes() {
@@ -30,13 +30,13 @@ export default function Sessoes() {
           <Sessao key={s.id} sessao={s} />
         ))}
       </SessoesContainer>
-      <FooterContainer>
+      <Footer>
         <img src={filme.posterURL} alt={filme.title} />
         <InfoFilmeContainer>
           <p>{filme.title}</p>
           <p></p>
         </InfoFilmeContainer>
-      </FooterContainer>
+      </Footer>
     </>
   );
 }
