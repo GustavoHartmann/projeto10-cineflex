@@ -25,6 +25,7 @@ export default function Assento({
       isAvailable={assento.isAvailable}
       isSelected={arraySelecionados.includes(assento.name) ? true : false}
       onClick={selecionarAssento}
+      data-identifier="seat"
     >
       {assento.name}
     </AssentoContainer>

@@ -12,24 +12,28 @@ export default function Sucesso({
       <h1>Pedido feito com sucesso!</h1>
       <InfoSucessoContainer>
         <h2>Filme e sessão</h2>
-        <p>{sessao.movie.title}</p>
-        <p>
+        <p data-identifier="movie-session-infos-reserve-finished">
+          {sessao.movie.title}
+        </p>
+        <p data-identifier="movie-session-infos-reserve-finished">
           {sessao.day.date} {sessao.name}
         </p>
       </InfoSucessoContainer>
       <InfoSucessoContainer>
         <h2>Ingresso</h2>
         {arraySelecionados.map((a, index) => (
-          <p key={index}>Assento {a}</p>
+          <p key={index} data-identifier="seat-infos-reserve-finished">
+            Assento {a}
+          </p>
         ))}
       </InfoSucessoContainer>
       <InfoSucessoContainer>
         <h2>Comprador</h2>
-        <p>Nome: {inputNome}</p>
-        <p>CPF: {inputCPF}</p>
+        <p data-identifier="buyer-infos-reserve-finished">Nome: {inputNome}</p>
+        <p data-identifier="buyer-infos-reserve-finished">CPF: {inputCPF}</p>
       </InfoSucessoContainer>
       <Link to={"/"}>
-        <button>Voltar para o Home</button>
+        <button data-identifier="back-to-home-btn">Voltar para o Home</button>
       </Link>
     </SucessoContainer>
   );

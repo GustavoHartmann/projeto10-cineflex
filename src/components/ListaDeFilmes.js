@@ -12,7 +12,7 @@ export default function ListaDeFilmes() {
 
     promise.then((response) => setfilmes(response.data));
 
-    promise.catch((erro) => console.log(erro));
+    promise.catch((erro) => alert(erro));
   }, []);
 
   return (
@@ -20,7 +20,7 @@ export default function ListaDeFilmes() {
       <h1>Selecione o filme</h1>
       <ListaDeFilmesContainer>
         {filmes.map((f) => (
-          <Filme key={f.id} img={f.posterURL} titulo={f.title} id={f.id}/>
+          <Filme key={f.id} img={f.posterURL} titulo={f.title} id={f.id} />
         ))}
       </ListaDeFilmesContainer>
     </>

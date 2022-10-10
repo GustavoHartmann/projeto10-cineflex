@@ -24,7 +24,7 @@ export default function Assentos({
 
     promise.then((response) => setSessao(response.data));
 
-    promise.catch((erro) => console.log(erro));
+    promise.catch((erro) => alert(erro));
   }, []);
 
   if (sessao.seats === undefined) {
@@ -69,15 +69,15 @@ export default function Assentos({
       </AssentosContainer>
       <LegendaAssentosContainer>
         <div>
-          <AssentoSelecionadoContainer />
+          <AssentoSelecionadoContainer data-identifier="seat-selected-subtitle" />
           <p>Selecionado</p>
         </div>
         <div>
-          <AssentoDisponivelContainer />
+          <AssentoDisponivelContainer data-identifier="seat-available-subtitle" />
           <p>Disponível</p>
         </div>
         <div>
-          <AssentoIndisponivelContainer />
+          <AssentoIndisponivelContainer data-identifier="seat-unavailable-subtitle" />
           <p>Indisponível</p>
         </div>
       </LegendaAssentosContainer>
@@ -91,6 +91,7 @@ export default function Assentos({
             onChange={(e) => setInputNome(e.target.value)}
             placeholder="Digite seu nome..."
             required
+            data-identifier="buyer-name-input"
           />
           <label htmlFor="cpf">CPF do comprador</label>
           <input
@@ -100,15 +101,24 @@ export default function Assentos({
             onChange={(e) => setInputCPF(e.target.value)}
             placeholder="Digite seu CPF..."
             required
+            data-identifier="buyer-cpf-input"
           />
-          <button type="submit">Reservar assento(s)</button>
+          <button type="submit" data-identifier="reservation-btn">
+            Reservar assento(s)
+          </button>
         </form>
       </FormularioCompradorContainer>
       <Footer>
-        <img src={sessao.movie.posterURL} alt={sessao.movie.title} />
+        <img
+          src={sessao.movie.posterURL}
+          alt={sessao.movie.title}
+          data-identifier="movie-img-preview"
+        />
         <InfoSessãoContainer>
-          <p>{sessao.movie.title}</p>
-          <p>
+          <p data-identifier="movie-and-session-infos-preview">
+            {sessao.movie.title}
+          </p>
+          <p data-identifier="movie-and-session-infos-preview">
             {sessao.day.weekday} - {sessao.name}
           </p>
         </InfoSessãoContainer>

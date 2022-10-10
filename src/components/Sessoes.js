@@ -15,7 +15,7 @@ export default function Sessoes() {
 
     promise.then((response) => setFilme(response.data));
 
-    promise.catch((erro) => console.log(erro));
+    promise.catch((erro) => alert(erro));
   }, []);
 
   if (filme.days === undefined) {
@@ -31,10 +31,13 @@ export default function Sessoes() {
         ))}
       </SessoesContainer>
       <Footer>
-        <img src={filme.posterURL} alt={filme.title} />
+        <img
+          src={filme.posterURL}
+          alt={filme.title}
+          data-identifier="movie-img-preview"
+        />
         <InfoFilmeContainer>
-          <p>{filme.title}</p>
-          <p></p>
+          <p data-identifier="movie-and-session-infos-preview">{filme.title}</p>
         </InfoFilmeContainer>
       </Footer>
     </>

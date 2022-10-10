@@ -5,13 +5,15 @@ export default function Sessao({ sessao }) {
   return (
     <>
       <SessaoContainer>
-        <h3>
+        <h3 data-identifier="session-date">
           {sessao.weekday} - {sessao.date}
         </h3>
         <ListaHorariosContainer>
           {sessao.showtimes.map((h) => (
             <Link key={h.id} to={`/assentos/${h.id}`}>
-              <HorarioContainer>{h.name}</HorarioContainer>
+              <HorarioContainer data-identifier="hour-minute-btn">
+                {h.name}
+              </HorarioContainer>
             </Link>
           ))}
         </ListaHorariosContainer>
