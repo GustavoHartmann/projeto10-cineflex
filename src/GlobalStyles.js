@@ -53,7 +53,16 @@ h1 {
 
 	text-align: center;
 
-	margin: 103px 0 40px 0;
+	margin: 100px 0 40px 0;
+}
+
+h2{
+	font-size: 24px;
+	font-weight: bold;
+
+	color: #293845;
+
+	margin-bottom: 15px;
 }
 
 h3 {

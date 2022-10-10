@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Assento from "./Assento";
 import Footer from "./Footer";
@@ -8,6 +8,10 @@ import Footer from "./Footer";
 export default function Assentos() {
   const { sessaoId } = useParams();
   const [sessao, setSessao] = useState({});
+  const [arraySelecionados, setArraySelecionados] = useState([]);
+  const [inputNome, setInputNome] = useState("");
+  const [inputCPF, setInputCPF] = useState("");
+  //console.log(arraySelecionados);
 
   useEffect(() => {
     const Url = `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessaoId}/seats`;
@@ -21,12 +25,37 @@ export default function Assentos() {
   if (sessao.seats === undefined) {
     return <p>Carregando...</p>;
   }
+
+  function enviarFormulario(e) {
+    const Url =
+      "https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many";
+    e.preventDefault();
+    const objAssentoSelecionado = sessao.seats.filter((a) =>
+      arraySelecionados.includes(a.name)
+    );
+    const idsAssentosSelecionados = objAssentoSelecionado.map((o) => o.id);
+    const promise = axios.post(Url, {
+      ids: idsAssentosSelecionados,
+      name: inputNome,
+      cpf: inputCPF,
+    });
+
+    promise.then((response) => console.log(response));
+
+    promise.catch((erro) => console.log(erro));
+  }
+
   return (
     <>
       <h1>Selecione o(s) assentos(s)</h1>
       <AssentosContainer>
         {sessao.seats.map((a) => (
-          <Assento key={a.id} assento={a} />
+          <Assento
+            key={a.id}
+            assento={a}
+            arraySelecionados={arraySelecionados}
+            setArraySelecionados={setArraySelecionados}
+          />
         ))}
       </AssentosContainer>
       <LegendaAssentosContainer>
@@ -44,12 +73,28 @@ export default function Assentos() {
         </div>
       </LegendaAssentosContainer>
       <FormularioCompradorContainer>
-        <form>
+        <form onSubmit={enviarFormulario}>
           <label htmlFor="name">Nome do comprador</label>
-          <input id="name" type="text" placeholder="Digite seu nome..." />
+          <input
+            id="name"
+            type="text"
+            value={inputNome}
+            onChange={(e) => setInputNome(e.target.value)}
+            placeholder="Digite seu nome..."
+            required
+          />
           <label htmlFor="cpf">CPF do comprador</label>
-          <input id="cpf" type="text" placeholder="Digite seu CPF..." />
-          <button type="submit">Reservar assento(s)</button>
+          <input
+            id="cpf"
+            type="text"
+            value={inputCPF}
+            onChange={(e) => setInputCPF(e.target.value)}
+            placeholder="Digite seu CPF..."
+            required
+          />
+          <Link to={"/sucesso"}>
+            <button type="submit">Reservar assento(s)</button>
+          </Link>
         </form>
       </FormularioCompradorContainer>
       <Footer>
