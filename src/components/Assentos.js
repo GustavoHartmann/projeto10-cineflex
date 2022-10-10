@@ -5,13 +5,17 @@ import styled from "styled-components";
 import Assento from "./Assento";
 import Footer from "./Footer";
 
-export default function Assentos() {
+export default function Assentos({
+  sessao,
+  setSessao,
+  arraySelecionados,
+  setArraySelecionados,
+  inputNome,
+  setInputNome,
+  inputCPF,
+  setInputCPF,
+}) {
   const { sessaoId } = useParams();
-  const [sessao, setSessao] = useState({});
-  const [arraySelecionados, setArraySelecionados] = useState([]);
-  const [inputNome, setInputNome] = useState("");
-  const [inputCPF, setInputCPF] = useState("");
-  //console.log(arraySelecionados);
 
   useEffect(() => {
     const Url = `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessaoId}/seats`;
@@ -30,19 +34,23 @@ export default function Assentos() {
     const Url =
       "https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many";
     e.preventDefault();
-    const objAssentoSelecionado = sessao.seats.filter((a) =>
-      arraySelecionados.includes(a.name)
-    );
-    const idsAssentosSelecionados = objAssentoSelecionado.map((o) => o.id);
-    const promise = axios.post(Url, {
-      ids: idsAssentosSelecionados,
-      name: inputNome,
-      cpf: inputCPF,
-    });
+    if (arraySelecionados.length !== 0) {
+      const objAssentoSelecionado = sessao.seats.filter((a) =>
+        arraySelecionados.includes(a.name)
+      );
+      const idsAssentosSelecionados = objAssentoSelecionado.map((o) => o.id);
+      const promise = axios.post(Url, {
+        ids: idsAssentosSelecionados,
+        name: inputNome,
+        cpf: inputCPF,
+      });
 
-    promise.then((response) => console.log(response));
+      promise.then((response) => console.log(response));
 
-    promise.catch((erro) => console.log(erro));
+      promise.catch((erro) => console.log(erro));
+    } else {
+      alert("É necessário escolher pelo menos 1 assento");
+    }
   }
 
   return (

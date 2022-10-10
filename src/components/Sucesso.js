@@ -1,25 +1,32 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Sucesso(props) {
-  console.log(props);
+export default function Sucesso({
+  sessao,
+  arraySelecionados,
+  inputNome,
+  inputCPF,
+}) {
   return (
     <SucessoContainer>
       <h1>Pedido feito com sucesso!</h1>
       <InfoSucessoContainer>
         <h2>Filme e sessão</h2>
-        <p>Enola Holmes</p>
-        <p>24/06/2021 15:00</p>
+        <p>{sessao.movie.title}</p>
+        <p>
+          {sessao.day.date} {sessao.name}
+        </p>
       </InfoSucessoContainer>
       <InfoSucessoContainer>
         <h2>Ingresso</h2>
-        <p>Assento 15</p>
-        <p>Assento 16</p>
+        {arraySelecionados.map((a, index) => (
+          <p key={index}>Assento {a}</p>
+        ))}
       </InfoSucessoContainer>
       <InfoSucessoContainer>
         <h2>Comprador</h2>
-        <p>Nome: Felipe Pereira Fernandes</p>
-        <p>CPF: 673.924.157-27</p>
+        <p>Nome: {inputNome}</p>
+        <p>CPF: {inputCPF}</p>
       </InfoSucessoContainer>
       <Link to={"/"}>
         <button>Voltar para o Home</button>
@@ -63,7 +70,9 @@ const SucessoContainer = styled.div`
 const InfoSucessoContainer = styled.div`
   width: 100%;
 
-  margin: 25px 0 0 30px;
+  margin-top: 25px;
+
+  padding-left: 30px;
 
   p {
     font-size: 22px;
