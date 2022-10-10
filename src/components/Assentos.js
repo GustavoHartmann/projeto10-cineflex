@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Assento from "./Assento";
 import Footer from "./Footer";
@@ -15,6 +15,7 @@ export default function Assentos({
   inputCPF,
   setInputCPF,
 }) {
+  const navigate = useNavigate();
   const { sessaoId } = useParams();
 
   useEffect(() => {
@@ -45,9 +46,9 @@ export default function Assentos({
         cpf: inputCPF,
       });
 
-      promise.then((response) => console.log(response));
+      promise.then(() => navigate("/sucesso"));
 
-      promise.catch((erro) => console.log(erro));
+      promise.catch((erro) => alert(erro));
     } else {
       alert("É necessário escolher pelo menos 1 assento");
     }
@@ -100,9 +101,7 @@ export default function Assentos({
             placeholder="Digite seu CPF..."
             required
           />
-          <Link to={"/sucesso"}>
-            <button type="submit">Reservar assento(s)</button>
-          </Link>
+          <button type="submit">Reservar assento(s)</button>
         </form>
       </FormularioCompradorContainer>
       <Footer>
