@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Footer = styled.div`
+export const FooterContainer = styled.div`
   width: 100%;
   height: 120px;
 
@@ -16,8 +16,9 @@ const Footer = styled.div`
   right: 0;
   left: 0;
   z-index: 1;
-  
-  img{
+
+  img {
+    // TODO: deixar os tamanhos fixos
     width: 20%;
     height: 80%;
 
@@ -25,4 +26,10 @@ const Footer = styled.div`
   }
 `;
 
-export default Footer;
+export const InfoFilmeContainer = styled.div`
+  margin-left: 10px;
+
+  font-size: 26px;
+
+  color: #293845;
+`;
