@@ -1,14 +1,13 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Filme from "./Filme";
+import Filme from "../../components/Filme";
+import { getMovies } from "../../services/api";
+import { ListaDeFilmesContainer } from "./styles";
 
 export default function ListaDeFilmes() {
   const [filmes, setfilmes] = useState([]);
 
   useEffect(() => {
-    const Url = "https://mock-api.driven.com.br/api/v5/cineflex/movies";
-    const promise = axios.get(Url);
+    const promise = getMovies();
 
     promise.then((response) => setfilmes(response.data));
 
@@ -26,14 +25,3 @@ export default function ListaDeFilmes() {
     </>
   );
 }
-
-const ListaDeFilmesContainer = styled.div`
-  width: 100%;
-
-  margin: 0 auto;
-  padding-bottom: 40px;
-
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-`;

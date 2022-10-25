@@ -1,17 +1,6 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Filme({ img, titulo, id }) {
-  return (
-    <Link to={`/sessoes/${id}`}>
-      <FilmeContainer data-identifier="movie-outdoor">
-        <img src={img} alt={titulo} />
-      </FilmeContainer>
-    </Link>
-  );
-}
-
-const FilmeContainer = styled.div`
+export const FilmeContainer = styled.div`
   width: 129px;
   height: 193px;
 
@@ -27,6 +16,11 @@ const FilmeContainer = styled.div`
   justify-content: center;
 
   cursor: pointer;
+
+  &:hover {
+    filter: brightness(0.8);
+    transform: scale(1.1);
+  }
 
   img {
     width: 90%;

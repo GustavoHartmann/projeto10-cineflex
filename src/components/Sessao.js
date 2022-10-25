@@ -36,6 +36,10 @@ const ListaHorariosContainer = styled.div`
 
   display: flex;
   align-items: center;
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 const HorarioContainer = styled.button`

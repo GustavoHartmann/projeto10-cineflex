@@ -1,11 +1,12 @@
-import GlobalStyle from "../GlobalStyles";
 import styled from "styled-components";
-import ListaDeFilmes from "./ListaDeFilmes";
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import ListaDeFilmes from "./ListaDeFilmes";
+import GlobalStyle from "../styles/GlobalStyles";
 import Sessoes from "./Sessoes";
 import Assentos from "./Assentos";
 import Sucesso from "./Sucesso";
-import { useState } from "react";
 
 export default function App() {
   const [sessao, setSessao] = useState({});
